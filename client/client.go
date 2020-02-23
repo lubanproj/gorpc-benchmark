@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var concurrency = flag.Int64("concurrency", 2000, "concurrency")
+var concurrency = flag.Int64("concurrency", 500, "concurrency")
 var total = flag.Int64("total", 200000, "total requests")
 
 func main() {
@@ -32,7 +32,7 @@ func request(totalReqs int64, concurrency int64) {
 	opts := []client.Option {
 		client.WithTarget("127.0.0.1:8000"),
 		client.WithNetwork("tcp"),
-		client.WithTimeout(200000 * time.Millisecond),
+		client.WithTimeout(2000 * time.Millisecond),
 		client.WithSerializationType("msgpack"),
 	}
 	c := client.DefaultClient

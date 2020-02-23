@@ -40,6 +40,8 @@ github.com/lubanproj/gorpc v0.0.0-20200207052511-5780d9985e6e h1:6iIVMZVCKV5+5/Q
 github.com/lubanproj/gorpc v0.0.0-20200207052511-5780d9985e6e/go.mod h1:AnXURVwFHh7FmFggK7iUfIBsGA11W4kyh4D5mD1XOS0=
 github.com/lubanproj/gorpc v0.0.0-20200215084437-2f5a4187062f h1:oh+qHuFmhJ4s2H9rnum+lmAaBOVzNJGDJWeM2gAHQjg=
 github.com/lubanproj/gorpc v0.0.0-20200215084437-2f5a4187062f/go.mod h1:AnXURVwFHh7FmFggK7iUfIBsGA11W4kyh4D5mD1XOS0=
+github.com/lubanproj/gorpc v0.0.0-20200222165956-6c0bc2f1b5ea h1:ZBdXlGpXBf4MVmn7tzLbPM/8BlGfmdBwwFXjI9aEBsQ=
+github.com/lubanproj/gorpc v0.0.0-20200222165956-6c0bc2f1b5ea/go.mod h1:AnXURVwFHh7FmFggK7iUfIBsGA11W4kyh4D5mD1XOS0=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-isatty v0.0.3/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
 github.com/miekg/dns v1.0.14/go.mod h1:W1PPwlIAgtquWBMBEV9nkV9Cazfe8ScdGz/Lj7v3Nrg=
