@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/lubanproj/gorpc-benchmark/testdata"
-	"github.com/lubanproj/gorpc/client"
+	pb "github.com/lubanproj/gorpc-benchmark/grpc/helloworld"
 	"github.com/lubanproj/gorpc/log"
+	"google.golang.org/grpc"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -40,26 +40,25 @@ func request(totalReqs int64, concurrency int64) {
 	for i:=int64(0); i<counter.Concurrency; i++ {
 
 		go func(i int64) {
+			// Set up a connection to the server.
+			conn, err := grpc.Dial("127.0.0.1:8000", grpc.WithInsecure())
+			if err != nil {
+				log.Info("did not connect: %v", err)
+			}
+			defer conn.Close()
+
 			for j:=int64(0); j< perClientReqs; j++ {
 
-				rsp := &helloworld.HelloReply{}
-
-				// Set up a connection to the server.
-				conn, err := grpc.Dial("127.0.0.1:8000", grpc.WithInsecure())
-				if err != nil {
-					log.Info("did not connect: %v", err)
-				}
-				defer conn.Close()
 				c := pb.NewGreeterClient(conn)
 
 				ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 				defer cancel()
 				rsp, err := c.SayHello(ctx, req)
 				if err != nil {
-					log.Fatalf("could not greet: %v", err)
+					log.Info("could not greet: %v", err)
 				}
 
-				if err == nil && rsp.Msg == "world" {
+				if err == nil && rsp.Message == "world" {
 					atomic.AddInt64(&counter.Succ, 1)
 				} else {
 					log.Info("rsp fail : %v", err)

@@ -54,6 +54,7 @@ github.com/lubanproj/gorpc v0.0.0-20200224155457-2ac7e50e0413 h1:awcyJn8ewpB9fiL
 github.com/lubanproj/gorpc v0.0.0-20200224155457-2ac7e50e0413/go.mod h1:IYMlKjqich12wAdartQfKkxAWLsVfxkjI+gJbcrRj1c=
 github.com/lubanproj/gorpc v0.0.0-20200224160622-8c241c479e9b h1:zCM+/uRZ535r+RkBH+HDA5215/zv/X5wCZcLdD/oLik=
 github.com/lubanproj/gorpc v0.0.0-20200224160622-8c241c479e9b/go.mod h1:IYMlKjqich12wAdartQfKkxAWLsVfxkjI+gJbcrRj1c=
+github.com/lubanproj/gorpc v0.0.0-20200227151256-45194c8f133b h1:QagYcTXoK4J8io/IgV45rtILMYZvBXVCNo4E97/OdLA=
 github.com/lubanproj/gorpc v0.0.0-20200227151256-45194c8f133b/go.mod h1:A7e5n92/6wmke6pf0CS+u/atT1L7K9+d1ITKAapIbSU=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.4/go.mod h1:U0ppj6V5qS13XJ6of8GYAs25YV2eR4EVcfRqFIhoBtE=
