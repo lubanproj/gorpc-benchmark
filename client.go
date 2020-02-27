@@ -14,8 +14,6 @@ import (
 var concurrency = flag.Int64("concurrency", 500, "concurrency")
 var total = flag.Int64("total", 1000000, "total requests")
 func main() {
-	pprof()
-
 	flag.Parse()
 	request(*total, *concurrency)
 }
@@ -79,3 +77,10 @@ func request(totalReqs int64, concurrency int64) {
 
 }
 
+type Counter struct {
+	Succ int64  // 成功量
+	Fail int64  // 失败量
+	Total int64 // 总量
+	Concurrency int64 // 并发量
+	Cost int64  // 总耗时 ms
+}
