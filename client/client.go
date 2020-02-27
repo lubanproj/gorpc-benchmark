@@ -12,9 +12,10 @@ import (
 )
 
 var concurrency = flag.Int64("concurrency", 500, "concurrency")
-var total = flag.Int64("total", 200000, "total requests")
-
+var total = flag.Int64("total", 1000000, "total requests")
 func main() {
+	pprof()
+
 	flag.Parse()
 	request(*total, *concurrency)
 }
@@ -56,6 +57,7 @@ func request(totalReqs int64, concurrency int64) {
 				if err == nil && rsp.Msg == "world" {
 					atomic.AddInt64(&counter.Succ, 1)
 				} else {
+					log.Info("rsp fail : %v", err)
 					atomic.AddInt64(&counter.Fail, 1)
 				}
 			}
