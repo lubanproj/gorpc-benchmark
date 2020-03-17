@@ -13,7 +13,7 @@ import (
 )
 
 var concurrency = flag.Int64("concurrency", 500, "concurrency")
-var target = flag.String("target", "127.0.0.1", "target")
+var target = flag.String("target", "127.0.0.1:8000", "target")
 var total = flag.Int64("total", 1000000, "total requests")
 
 func main() {
