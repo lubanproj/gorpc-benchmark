@@ -18,10 +18,10 @@ var total = flag.Int64("total", 1000000, "total requests")
 
 func main() {
 	flag.Parse()
-	request(*total, *concurrency)
+	request(*total, *concurrency, *target)
 }
 
-func request(totalReqs int64, concurrency int64) {
+func request(totalReqs int64, concurrency int64, target string) {
 
 	perClientReqs := totalReqs / concurrency
 
