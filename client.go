@@ -3,33 +3,35 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/lubanproj/gorpc-benchmark/testdata"
-	"github.com/lubanproj/gorpc/client"
-	"github.com/lubanproj/gorpc/log"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/lubanproj/gorpc-benchmark/testdata"
+	"github.com/lubanproj/gorpc/client"
+	"github.com/lubanproj/gorpc/log"
 )
 
 var concurrency = flag.Int64("concurrency", 500, "concurrency")
+var target = flag.String("target", "127.0.0.1", "target")
 var total = flag.Int64("total", 1000000, "total requests")
+
 func main() {
 	flag.Parse()
 	request(*total, *concurrency)
 }
-
 
 func request(totalReqs int64, concurrency int64) {
 
 	perClientReqs := totalReqs / concurrency
 
 	counter := &Counter{
-		Total: perClientReqs * concurrency ,
+		Total:       perClientReqs * concurrency,
 		Concurrency: concurrency,
 	}
 
-	opts := []client.Option {
-		client.WithTarget("127.0.0.1:8000"),
+	opts := []client.Option{
+		client.WithTarget(target),
 		client.WithNetwork("tcp"),
 		client.WithTimeout(2000 * time.Millisecond),
 		client.WithSerializationType("msgpack"),
@@ -44,13 +46,13 @@ func request(totalReqs int64, concurrency int64) {
 
 	startTime := time.Now().UnixNano()
 
-	for i:=int64(0); i<counter.Concurrency; i++ {
+	for i := int64(0); i < counter.Concurrency; i++ {
 
 		go func(i int64) {
-			for j:=int64(0); j< perClientReqs; j++ {
+			for j := int64(0); j < perClientReqs; j++ {
 
 				rsp := &testdata.HelloReply{}
-				err := c.Call(context.Background(), "/helloworld.Greeter/SayHello", req, rsp, opts ...)
+				err := c.Call(context.Background(), "/helloworld.Greeter/SayHello", req, rsp, opts...)
 
 				if err == nil && rsp.Msg == "world" {
 					atomic.AddInt64(&counter.Succ, 1)
@@ -70,7 +72,7 @@ func request(totalReqs int64, concurrency int64) {
 
 	log.Info("took %d ms for %d requests", counter.Cost, counter.Total)
 	log.Info("sent     requests      : %d\n", counter.Total)
-	log.Info("received requests      : %d\n", atomic.LoadInt64(&counter.Succ) + atomic.LoadInt64(&counter.Fail))
+	log.Info("received requests      : %d\n", atomic.LoadInt64(&counter.Succ)+atomic.LoadInt64(&counter.Fail))
 	log.Info("received requests succ : %d\n", atomic.LoadInt64(&counter.Succ))
 	log.Info("received requests fail : %d\n", atomic.LoadInt64(&counter.Fail))
 	log.Info("throughput  (TPS)      : %d\n", totalReqs*1000/counter.Cost)
@@ -78,9 +80,9 @@ func request(totalReqs int64, concurrency int64) {
 }
 
 type Counter struct {
-	Succ int64  // 成功量
-	Fail int64  // 失败量
-	Total int64 // 总量
+	Succ        int64 // 成功量
+	Fail        int64 // 失败量
+	Total       int64 // 总量
 	Concurrency int64 // 并发量
-	Cost int64  // 总耗时 ms
+	Cost        int64 // 总耗时 ms
 }
