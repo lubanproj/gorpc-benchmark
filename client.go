@@ -70,7 +70,7 @@ func request(totalReqs int64, concurrency int64, target string) {
 
 	counter.Cost = (time.Now().UnixNano() - startTime) / 1000000
 
-	log.Info("took %d ms for %d requests", counter.Cost, counter.Total)
+	log.Info("took %d ms for %d requests \n", counter.Cost, counter.Total)
 	log.Info("sent     requests      : %d\n", counter.Total)
 	log.Info("received requests      : %d\n", atomic.LoadInt64(&counter.Succ)+atomic.LoadInt64(&counter.Fail))
 	log.Info("received requests succ : %d\n", atomic.LoadInt64(&counter.Succ))
