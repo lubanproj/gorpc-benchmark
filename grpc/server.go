@@ -5,8 +5,9 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/lubanproj/gorpc-benchmark/grpc/helloworld"
 	"google.golang.org/grpc"
+
+	pb "github.com/lubanproj/gorpc-benchmark/grpc/helloworld"
 )
 
 const (

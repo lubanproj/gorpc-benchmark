@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/lubanproj/gorpc-benchmark/testdata"
-	"github.com/lubanproj/gorpc/client"
-	"github.com/lubanproj/gorpc/log"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/lubanproj/gorpc-benchmark/testdata"
+	"github.com/lubanproj/gorpc/client"
+	"github.com/lubanproj/gorpc/log"
 )
 
 var concurrency = flag.Int64("concurrency", 500, "concurrency")
