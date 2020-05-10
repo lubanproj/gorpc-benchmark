@@ -1,9 +1,10 @@
 package main
 
 import (
+	"time"
+
 	"github.com/lubanproj/gorpc"
 	"github.com/lubanproj/gorpc-benchmark/testdata"
-	"time"
 )
 
 
