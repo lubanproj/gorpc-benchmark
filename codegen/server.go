@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/lubanproj/gorpc"
@@ -12,7 +11,6 @@ import (
 type greeterService struct{}
 
 func (g *greeterService) SayHello(ctx context.Context, req *helloworld.HelloRequest) (*helloworld.HelloReply, error) {
-	fmt.Println("recv Msg : ", req.Msg)
 	rsp := &helloworld.HelloReply{
 		Msg: "world",
 	}
