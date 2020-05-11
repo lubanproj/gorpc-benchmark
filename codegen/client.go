@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -70,12 +71,12 @@ func request(totalReqs int64, concurrency int64, target string) {
 
 	counter.Cost = (time.Now().UnixNano() - startTime) / 1000000
 
-	log.Info("took %d ms for %d requests \n", counter.Cost, counter.Total)
-	log.Info("sent     requests      : %d\n", counter.Total)
-	log.Info("received requests      : %d\n", atomic.LoadInt64(&counter.Succ)+atomic.LoadInt64(&counter.Fail))
-	log.Info("received requests succ : %d\n", atomic.LoadInt64(&counter.Succ))
-	log.Info("received requests fail : %d\n", atomic.LoadInt64(&counter.Fail))
-	log.Info("throughput  (TPS)      : %d\n", totalReqs*1000/counter.Cost)
+	fmt.Printf("took %d ms for %d requests \n", counter.Cost, counter.Total)
+	fmt.Printf("sent     requests      : %d\n", counter.Total)
+	fmt.Printf("received requests      : %d\n", atomic.LoadInt64(&counter.Succ)+atomic.LoadInt64(&counter.Fail))
+	fmt.Printf("received requests succ : %d\n", atomic.LoadInt64(&counter.Succ))
+	fmt.Printf("received requests fail : %d\n", atomic.LoadInt64(&counter.Fail))
+	fmt.Printf("throughput  (TPS)      : %d\n", totalReqs*1000/counter.Cost)
 
 }
 
